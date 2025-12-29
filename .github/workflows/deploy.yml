@@ -15,11 +15,11 @@ jobs:
         with:
           path: backend
 
-      - name: Sync backend to app folder
+      - name: Sync backend folder to app path
         run: |
-          rm -rf /home/fathi/app/backend
-          mv backend /home/fathi/app/backend
+          rm -rf "/home/appttraining 2/backend"
+          mv backend "/home/appttraining 2/backend"
 
-      - name: Restart backend service
+      - name: Build & restart backend service
         run: |
-          docker compose -f /home/fathi/app/docker-compose.yml up -d --build backend
+          docker compose -f "/home/appttraining 2/docker-compose.yaml" up -d --build backend
