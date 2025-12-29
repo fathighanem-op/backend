@@ -1,0 +1,25 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout backend code
+        uses: actions/checkout@v4
+        with:
+          path: backend
+
+      - name: Sync backend to app folder
+        run: |
+          rm -rf /home/fathi/app/backend
+          mv backend /home/fathi/app/backend
+
+      - name: Restart backend service
+        run: |
+          docker compose -f /home/fathi/app/docker-compose.yml up -d --build backend
